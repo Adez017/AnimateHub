@@ -189,7 +189,7 @@ export default function AddBlogPage() {
               value={newBlog.title}
               onChange={(e) => {
                 setNewBlog({ ...newBlog, title: e.target.value });
-                if (errors.title) setErrors({ ...errors, title: "" });
+                if (errors.title) setErrors((prev) => ({ ...prev, title: "" }));
               }}
             />
             {errors.title && (
@@ -227,7 +227,7 @@ export default function AddBlogPage() {
               value={newBlog.content}
               onChange={(e) => {
                 setNewBlog({ ...newBlog, content: e.target.value });
-                if (errors.content) setErrors({ ...errors, content: "" });
+                if (errors.content) setErrors((prev) => ({ ...prev, content: "" }));
               }}
             />
             {errors.content && (
