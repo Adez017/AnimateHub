@@ -167,16 +167,22 @@ export const updateBlogById = asyncHandler(async (req, res) => {
   }
 
   const updateData = {};
-  if (title) {
+  if (title !== undefined && title !== null) {
     const trimmedTitle = title.trim();
+    if (!trimmedTitle) {
+      throw new ApiError(400, "Title cannot be empty");
+    }
     if (trimmedTitle.length < 5) {
       throw new ApiError(400, "Title must be at least 5 characters long");
     }
     updateData.title = trimmedTitle;
   }
   if (excerpt) updateData.excerpt = excerpt.trim();
-  if (content) {
+  if (content !== undefined && content !== null) {
     const trimmedContent = content.trim();
+    if (!trimmedContent) {
+      throw new ApiError(400, "Content cannot be empty");
+    }
     if (trimmedContent.length < 20) {
       throw new ApiError(400, "Content must be at least 20 characters long");
     }
